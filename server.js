@@ -1,7 +1,7 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
-var nasabahRouter = require("./app/routes/Nasabah.routes.js");
+var nasabahRouter = require("./app/routes/nasabah.routes.js");
 
 var corsOptions = {
     origin: "http://localhost:8081"
