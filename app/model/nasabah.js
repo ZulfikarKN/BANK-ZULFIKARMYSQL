@@ -14,6 +14,8 @@ Nasabah.getAll = (key, body, result) => {
     let query = "SELECT * FROM `nasabah`";
     if (key && body) {
       query += ` WHERE ${key} = ${body}`;
+    } else {
+        query += 'ORDER BY id';
     }
     sql.query(query, (err, res) => {
       if (err) {
