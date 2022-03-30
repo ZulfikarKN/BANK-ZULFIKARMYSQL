@@ -67,6 +67,10 @@ Nasabah.updateById = (id, Nasabah, result) => {
         result(null, err);
         return;
       }
+      if (res.affectedRows == 0) {
+        result({kind: "not_found"}, null);
+        return;
+      }
       console.log("updated Nasabah: ", { id: id, ...Nasabah });
       result(null, { id: id, ...Nasabah });
     }
