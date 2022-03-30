@@ -67,11 +67,6 @@ Nasabah.updateById = (id, Nasabah, result) => {
         result(null, err);
         return;
       }
-      if (res.affectedRows == 0) {
-        // not found Nasabah with the id
-        result({ kind: "not_found" }, null);
-        return;
-      }
       console.log("updated Nasabah: ", { id: id, ...Nasabah });
       result(null, { id: id, ...Nasabah });
     }
@@ -123,7 +118,9 @@ Nasabah.checker = (value, result) => {
             console.log("checker error: ", err);
             result(null, err);
         }
+        console.log('checked!');
         result(null, res);
-    })
+    });
 }
+
 module.exports = Nasabah;
