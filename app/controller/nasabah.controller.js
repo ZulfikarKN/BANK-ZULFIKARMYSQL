@@ -55,30 +55,27 @@ exports.update = (req, res) => {
     if (err) {
       res.sendStatus(403);
     } else {
-      if (Object.keys(req.body) > 1) {
-        console.log(req.body);
-        Nasabah.updateById(
-          req.body.id,
-          new Nasabah(req.body),
-          (err, data) => {
-            if (err) {
-              if (err.kind === "not_found") {
-                res.status(404).send({
-                  message: `Not found Nasabah with id ${req.body.id}.`
-                });
-              } else {
-                res.status(500).send({
-                  message: "Error updating Nasabah with id " + req.body.id
-                });
-              }
-            } else res.send(data);
-          }
-        ); 
-      } else res.send({message: "content cannot empty"})
+      console.log(req.body);
+      Nasabah.updateById(
+        req.body.id,
+        new Nasabah(req.body),
+        (err, data) => {
+          if (err) {
+            if (err.kind === "not_found") {
+              res.status(404).send({
+                message: `Not found Nasabah with id ${req.body.id}.`
+              });
+             } else {
+              res.status(500).send({
+                 message: "Error updating Nasabah with id " + req.body.id
+              });
+            }
+          } else res.send(data);
+        }
+      );
     }
   });
 };
-
 
 exports.create = async(req, res) => {
   jwt.verify(req.token, 'secret', (err, authData) => {
