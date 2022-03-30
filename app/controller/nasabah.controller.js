@@ -51,17 +51,55 @@ exports.update = (req, res) => {
         if (err) {
           if (err.kind === "not_found") {
             res.status(404).send({
-              message: `Not found Tutorial with id ${req.params.id}.`
+              message: `Not found Nasabah with id ${req.body.id}.`
             });
           } else {
             res.status(500).send({
-              message: "Error updating Tutorial with id " + req.params.id
+              message: "Error updating Nasabah with id " + req.body.id
             });
           }
         } else res.send(data);
       }
     );
   };
+
+exports.create = async(req, res) => {
+
+    if (!req.body) {
+        res.status(400).send({
+          message: "Content can not be empty!"
+        });
+    }
+    Nasabah.checker(req.body.noKTP, (err, data) => {
+        if (err) {
+            res.status(20).send({
+                message: err.message || "Something's Wrong!"
+            });
+        }
+        console.log(data);
+        if (data.length < 1) {
+            const nasabah = new Nasabah({
+                id: req.body.id,
+                nama: req.body.nama,
+                alamat: req.body.alamat,
+                tempatLahir: req.body.tempatLahir,
+                tanggalLahir: req.body.tanggalLahir,
+                noKTP: req.body.noKTP,
+                noHP: req.body.noHP,
+            });
+            Nasabah.create(nasabah, (err, data) => {
+                if (err) {
+                    res.status(500).send({
+                        message: err.message || "Error occured while creating nasabah!"
+                    });
+                }
+                else res.send(data);
+            });
+        } else {
+            res.send({message: "noKTP already registered!"});
+        }
+    });
+};
 
 exports.create = (req, res) => {
     // var check = null;
