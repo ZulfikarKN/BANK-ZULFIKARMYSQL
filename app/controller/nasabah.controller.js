@@ -94,7 +94,7 @@ exports.create = async(req, res) => {
               });
           }
           console.log(data);
-          if (Object.keys(data) < 1) {
+          if (data.length < 1) {
               const nasabah = new Nasabah({
                   id: req.body.id,
                   nama: req.body.nama,
