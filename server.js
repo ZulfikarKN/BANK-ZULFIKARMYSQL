@@ -1,6 +1,8 @@
 const express = require("express");
 const cors = require("cors");
 const app = express();
+
+var userRouter = require("./app/routes/users.routes.js");
 var nasabahRouter = require("./app/routes/nasabah.routes.js");
 
 var corsOptions = {
@@ -17,6 +19,7 @@ app.get("/", (req, res) => {
 });
 
 app.use('/nasabah', nasabahRouter);
+app.use('/user', userRouter);
 
 const PORT = process.env.PORT || 8080;
 app.listen(PORT, () => {
