@@ -10,13 +10,13 @@ services:
     volumes: 
       - .:/app
       - '/app/node_modules'
-    depends_on: 
-      - mysql_server
-  
-  mysql_server:
-    image: mysql:8.0
-    environment: 
-      - MYSQL_DATABASE=sql6482021
-      - MYSQL_USER=sql6482021
-      - MYSQL_PASSWORD=9bs8pRGwyM
-      - MYSQL_ROOT_PASSWORD=pass
+#    depends_on: 
+#      - mysql_server
+#  
+#  mysql_server:
+#    image: mysql:8.0
+#   environment: 
+#      - MYSQL_DATABASE=sql6482021
+#      - MYSQL_USER=sql6482021
+#      - MYSQL_PASSWORD=9bs8pRGwyM
+#      - MYSQL_ROOT_PASSWORD=pass
